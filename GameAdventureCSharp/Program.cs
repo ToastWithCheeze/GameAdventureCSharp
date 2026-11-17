@@ -1,4 +1,4 @@
-﻿namespace GameAdventureCSharp
+﻿namespace TicTacToe
 {
     internal class Program
     {
