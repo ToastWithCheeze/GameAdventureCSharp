@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="GameAdventureCSharp/TIC-TAC-TOE.csproj" />
+  <Project Path="Tic-Tac-Toe/TIC-TAC-TOE.csproj" />
   <Project Path="MG-Game/MG-Game.csproj" Id="6801b2f9-38b9-4844-b526-a1ef0646a990" />
 </Solution>
