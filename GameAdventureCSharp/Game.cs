@@ -32,7 +32,7 @@
 
         }
 
-        public void debug()
+        public void Debug()
         {
 
         }
