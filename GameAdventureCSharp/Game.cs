@@ -16,12 +16,18 @@
 
         public void Start()
         {
-            //Console.WriteLine("Welcome to the Tic Tac Toe!");
-            while (true)
+            bool _running = true;
+            Console.WriteLine("Welcome to the Tic Tac Toe!");
+            while (_running)
             {
                 Print_board();
                 Move();
-                Check_winner();
+                if (Check_winner() == true)
+                {
+                    Console.WriteLine("You Won!");
+                    _running = false;
+                }
+
             }
 
         }
@@ -54,15 +60,19 @@
 
 
         }
-        private void Check_winner() //borde return true of false, lägger till senare nog
+        private bool Check_winner() //borde return true of false, lägger till senare nog
         {
             for (int i = 0; i < win_combination.GetLength(0); i++)
             {
-                if (board[win_combination[i, 0]] == "X" && board[win_combination[i, 1]] == "X" && board[win_combination[i, 2]] == "X")
+                if (board[win_combination[i, 0]] == "X" && 
+                    board[win_combination[i, 1]] == "X" && 
+                    board[win_combination[i, 2]] == "X")
                 {
-                    Console.WriteLine("You Won!");
+                    return true; //ger tillbaka true och slutar kollar
+
                 }
             }
+            return false; // ger tillbaka false om ingen match hittades
         }
 
     }
