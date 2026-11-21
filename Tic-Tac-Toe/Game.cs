@@ -26,6 +26,13 @@
                 {
                     Console.WriteLine("You Won!");
                     _running = false;
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
                 }
 
             }
@@ -64,8 +71,8 @@
         {
             for (int i = 0; i < win_combination.GetLength(0); i++)
             {
-                if (board[win_combination[i, 0]] == "X" && 
-                    board[win_combination[i, 1]] == "X" && 
+                if (board[win_combination[i, 0]] == "X" &&
+                    board[win_combination[i, 1]] == "X" &&
                     board[win_combination[i, 2]] == "X")
                 {
                     return true; //ger tillbaka true och slutar kollar
