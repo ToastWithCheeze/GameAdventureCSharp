@@ -97,16 +97,25 @@
         {
             while (true)
             {
+                int _position;
                 Console.Write($"Make your move ({_player}): ");
-                int _position = Convert.ToInt32(Console.ReadLine());
-                if (board[_position - 1] != "X" && board[_position - 1] != "O")
+                try
                 {
-                    board[_position - 1] = _player; // case senstivity important!!
-                    break;
+                    _position = Convert.ToInt32(Console.ReadLine());
+                    if (board[_position - 1] != "X" && board[_position - 1] != "O")
+                    {
+                        board[_position - 1] = _player; // case senstivity important!!
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Idiot someones already there!!");
+                        continue;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    Console.WriteLine("Idiot someones already there!!");
+                    Console.WriteLine(e.Message);
                     continue;
                 }
             }
