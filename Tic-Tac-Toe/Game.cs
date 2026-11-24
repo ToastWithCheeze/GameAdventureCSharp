@@ -17,35 +17,72 @@
         public void Start()
         {
             bool _running = true;
+            int _turns = 1;
+            bool _x_turn = true;
+            string player;
             Console.WriteLine("Welcome to the Tic Tac Toe!");
+
+
             while (_running)
             {
                 Print_board();
-                Move();
-                if (Check_winner() == true)
+                //Checks whos turn it is
+                if (_x_turn == true)
                 {
-                    Console.WriteLine("You Won!");
+                    player = "X";
+                }
+                else
+                {
+                    player = "O";
+                }
+
+                Move(player);
+                //Checks winner after every move and continues if none has won
+                if (Check_winner("X") == true)
+                {
+                    Win_message("X");
                     _running = false;
-                    Console.WriteLine("Press any key to continue...");
-                    Console.ReadKey();
-                    Console.Clear();
+                    break;
+                }
+                else if (Check_winner("O") == true)
+                {
+                    Win_message("O");
+                    _running = false;
+                    break;
                 }
                 else
                 {
                     Console.Clear();
                 }
+                //Keeps tracks of how many turns the game is on
+                if (_turns++ == 9)
+                {
+                    Console.WriteLine("Yall ran out of turns...");
+                    _running = false;
+                    break;
+                }
+
+                //Sets next turn
+                if (_x_turn == true)
+                {
+                    _x_turn = false;
+                }
+                else if (_x_turn == false)
+                {
+                    _x_turn = true;
+                }
+
 
             }
 
         }
 
-        public void Debug()
+        private void Win_message(string _player)
         {
-
-        }
-
-        private void Game_loop()
-        {
+            Console.WriteLine($"You Won! ({_player})");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
 
         }
         private void Print_board()
@@ -56,24 +93,34 @@
             Console.WriteLine("---|---|---");
             Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
         }
-        private void Move()
+        private void Move(string _player)
         {
-            Console.Write("Make your move ({player}): ");
-            int _position = Convert.ToInt32(Console.ReadLine());
-            if (board[_position - 1] != "X")
+            while (true)
             {
-                board[_position - 1] = "X"; // case senstivity important!!
+                Console.Write($"Make your move ({_player}): ");
+                int _position = Convert.ToInt32(Console.ReadLine());
+                if (board[_position - 1] != "X" && board[_position - 1] != "O")
+                {
+                    board[_position - 1] = _player; // case senstivity important!!
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Idiot someones already there!!");
+                    continue;
+                }
             }
 
 
+
         }
-        private bool Check_winner() //borde return true of false, lägger till senare nog
+        private bool Check_winner(string _player) //borde return true of false, lägger till senare nog
         {
             for (int i = 0; i < win_combination.GetLength(0); i++)
             {
-                if (board[win_combination[i, 0]] == "X" &&
-                    board[win_combination[i, 1]] == "X" &&
-                    board[win_combination[i, 2]] == "X")
+                if (board[win_combination[i, 0]] == _player &&
+                    board[win_combination[i, 1]] == _player &&
+                    board[win_combination[i, 2]] == _player)
                 {
                     return true; //ger tillbaka true och slutar kollar
 
